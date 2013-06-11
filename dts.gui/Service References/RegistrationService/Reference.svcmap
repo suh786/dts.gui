@@ -22,10 +22,9 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="RegistrationService.disco" MetadataType="Disco" ID="8d36e0f5-d402-4717-9dca-ffce1b6dee0f" SourceId="1" SourceUrl="http://localhost:3030/RegistrationService?disco" />
-    <MetadataFile FileName="RegistrationService.xsd" MetadataType="Schema" ID="0f0ad925-f6ce-401f-8a79-2a7836195f6c" SourceId="1" SourceUrl="http://localhost:3030/RegistrationService?xsd=xsd2" />
+    <MetadataFile FileName="RegistrationService2.xsd" MetadataType="Schema" ID="b1e0c3fe-21b5-4e0c-8781-a75590046fdb" SourceId="1" SourceUrl="http://localhost:3030/RegistrationService?xsd=xsd1" />
     <MetadataFile FileName="RegistrationService.wsdl" MetadataType="Wsdl" ID="a86c49e5-4640-428e-ae97-1ff889a08b1d" SourceId="1" SourceUrl="http://localhost:3030/RegistrationService?wsdl" />
     <MetadataFile FileName="RegistrationService1.xsd" MetadataType="Schema" ID="7a776478-d28d-40cc-81a1-f4e87fcca4b3" SourceId="1" SourceUrl="http://localhost:3030/RegistrationService?xsd=xsd0" />
-    <MetadataFile FileName="RegistrationService2.xsd" MetadataType="Schema" ID="b1e0c3fe-21b5-4e0c-8781-a75590046fdb" SourceId="1" SourceUrl="http://localhost:3030/RegistrationService?xsd=xsd1" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

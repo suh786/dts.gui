@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using dts.gui.RegistrationService;
 
 namespace dts.gui
 {
@@ -22,6 +23,13 @@ namespace dts.gui
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void button1_Click(object sender, RoutedEventArgs e)
+        {
+            var service = new RegistrationServiceClient();
+
+            MessageBox.Show(service.Subscribe("Suhail").ToString());
         }
     }
 }
