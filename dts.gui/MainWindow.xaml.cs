@@ -21,7 +21,7 @@ namespace dts.gui
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Uri baseAddress = new Uri("http://localhost:3030/RegistrationService");
+        private static Uri baseAddress = new Uri("http://localhost:3031/RegistrationService");
         private static RegistrationServiceClient _service;
 
         public MainWindow()
@@ -32,7 +32,7 @@ namespace dts.gui
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(_service.Subscribe("Suhail").ToString());
+            _service.Subscribe("Suhail");
         }
 
         private void SetupRegistrationServiceClient()

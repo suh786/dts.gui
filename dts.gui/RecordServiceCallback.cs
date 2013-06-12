@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------
 
 using System.Diagnostics;
+using System.Threading.Tasks;
 using dts.gui.RegistrationService;
 
 namespace dts.gui
@@ -21,7 +22,7 @@ namespace dts.gui
     {
         public void RecordAdded(string recordId, string[] record)
         {
-            Debug.WriteLine(recordId);
+            Task.Factory.StartNew(() => Debug.WriteLine(recordId));
         }
     }
 }
