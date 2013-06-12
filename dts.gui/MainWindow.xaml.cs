@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,16 +21,36 @@ namespace dts.gui
     /// </summary>
     public partial class MainWindow : Window
     {
+        private static Uri baseAddress = new Uri("http://localhost:3030/RegistrationService");
+        private static RegistrationServiceClient _service;
+
         public MainWindow()
         {
             InitializeComponent();
+            SetupRegistrationServiceClient();
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            var service = new RegistrationServiceClient();
+            MessageBox.Show(_service.Subscribe("Suhail").ToString());
+        }
 
-            MessageBox.Show(service.Subscribe("Suhail").ToString());
+        private void SetupRegistrationServiceClient()
+        {
+            _service = new RegistrationServiceClient(new InstanceContext(null, new RegistrationServiceCallback()));
+
+            WSDualHttpBinding binding = (WSDualHttpBinding) _service.Endpoint.Binding;
+            string uniqueCallbackAddress = baseAddress.AbsoluteUri;
+
+            // make it unique - append a GUID
+            uniqueCallbackAddress += Guid.NewGuid().ToString();
+            //uniqueCallbackAddress += 9;
+            binding.ClientBaseAddress = new Uri(uniqueCallbackAddress);
+        }
+
+        private void button2_Click(object sender, RoutedEventArgs e)
+        {
+            _service.Unsubscribe("Suhail");
         }
     }
 }

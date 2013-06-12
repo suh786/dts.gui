@@ -57,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="RecordServiceCallback.cs" />
     <Compile Include="Service References\RegistrationService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -100,6 +101,9 @@
     </None>
     <AppDesigner Include="Properties\" />
     <None Include="Service References\RegistrationService\RegistrationService.wsdl" />
+    <None Include="Service References\RegistrationService\RegistrationService.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Service References\RegistrationService\RegistrationService1.xsd">
       <SubType>Designer</SubType>
     </None>
