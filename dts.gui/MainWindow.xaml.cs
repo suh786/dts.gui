@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
@@ -32,7 +33,8 @@ namespace dts.gui
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            _service.Subscribe("Suhail");
+            Debug.WriteLine(_service.Subscribe("Suhail"));
+            
         }
 
         private void SetupRegistrationServiceClient()

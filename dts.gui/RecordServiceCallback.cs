@@ -20,9 +20,11 @@ namespace dts.gui
     /// </summary>
     public class RegistrationServiceCallback : IRegistrationServiceCallback
     {
-        public void RecordAdded(string recordId, string[] record)
+        public void RecordAdded(Person person)
         {
-            Task.Factory.StartNew(() => Debug.WriteLine(recordId));
+            if(person == null) return;
+
+            Task.Factory.StartNew(() => Debug.WriteLine(person.ToDisplayString()));
         }
     }
 }
