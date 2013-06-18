@@ -57,7 +57,16 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataGrid\DataGridModel.cs" />
+    <Compile Include="DataGrid\IDataGridColumnDescriptor.cs" />
+    <Compile Include="DataGrid\IDatGridRowModel.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="Models\DisposeableObject.cs" />
+    <Compile Include="Models\IIdentifiable.cs" />
+    <Compile Include="Models\IInitializable.cs" />
+    <Compile Include="Models\IPubSubRecord.cs" />
+    <Compile Include="Models\IPubSubService.cs" />
+    <Compile Include="NotifyingObject.cs" />
     <Compile Include="RecordServiceCallback.cs" />
     <Compile Include="Service References\RegistrationService\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -133,6 +142,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
