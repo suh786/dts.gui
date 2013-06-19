@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using dts.gui.Models;
 
 namespace dts.gui
 {
-    class NotifyingObject : INotifyPropertyChanged
+    public class NotifyingObject : DisposeableObject, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

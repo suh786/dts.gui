@@ -1,71 +1,45 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using System.Text;
 using dts.gui.Models;
 using dts.gui.DataGrid;
 
 namespace dts.gui.DataGrid
 {
-    public interface IDataGridViewModel : IInitializable
+    public interface IDataGridModel<TRowModel> : IDisposable, IInitializable
+        where TRowModel : IDataGridRowModel
     {
-        IEnumerable<IDataGridColumnDescriptor> ColumnDescriptors { get; }
+        event EventHandler<DataGridRowAddedEventArgs<TRowModel>> RowAdded;
+        event EventHandler<DataGridRowUpdateEventArgs<TRowModel>> RowUpdated;
+        event EventHandler<DataGridRowDeleteEventArgs> RowDeleted;
     }
 
-    public interface IDataGridModel<T> : IDisposable, IInitializable where T : IDataGridRowModel
+    public class DataGridRowDeleteEventArgs : EventArgs
     {
-        IList<T> Items { get; }
+        public DataGridRowDeleteEventArgs(string rowId)
+        {
+            RowId = rowId;
+        }
+
+        public string RowId { get; private set; }
     }
 
-    public abstract class DataGridModelBase<TRowModel, TPubSubRecord> : DisposeableObject, IDataGridModel<TRowModel> where TPubSubRecord : IPubSubRecord where TRowModel : IDataGridRowModel
+    public class DataGridRowUpdateEventArgs<T> : EventArgs
     {
-        private IPubSubService<TPubSubRecord> _dataService;
-
-        protected DataGridModelBase(IPubSubService<TPubSubRecord> dataService)
+        public DataGridRowUpdateEventArgs(T row)
         {
-            Items = new ObservableCollection<TRowModel>();
-            _dataService = dataService;
-            _dataService.RecordAdded += HandleRecordAdded;
-            _dataService.RecordUpdated += HandleRecordUpdated;
-            _dataService.RecordDeleted += HandleRecordDeleted;
+            Row = row;
         }
 
-        private void HandleRecordDeleted(object sender, RecordDeleteEventArgs e)
+        public T Row { get; private set; }
+    }
+
+    public class DataGridRowAddedEventArgs<T> : EventArgs where T : IDataGridRowModel
+    {
+        public DataGridRowAddedEventArgs(T row)
         {
-            Items.Remove(Items.Where(x => x.Id == e.RecordId).Single());
+            Row = row;
         }
 
-        private void HandleRecordUpdated(object sender, RecordUpdateEventArgs<TPubSubRecord> e)
-        {
-            int index = Items.IndexOf(Items.Where(x => x.Id == e.Record.Id).Single());
-
-            Items[index] = CreateRow(e.Record);
-        }
-
-        protected abstract TRowModel CreateRow(TPubSubRecord record);
-
-        private void HandleRecordAdded(object sender, RecordAddEventArgs<TPubSubRecord> e)
-        {
-            Items.Add(CreateRow(e.Record));
-        }
-
-        public IList<TRowModel> Items { get; private set; }
-
-        public void Init()
-        {
-           _dataService.Start(); 
-        }
-
-        protected override void DisposeInternal()
-        {
-            _dataService.RecordAdded -= HandleRecordAdded;
-            _dataService.RecordUpdated -= HandleRecordUpdated;
-            _dataService.RecordDeleted -= HandleRecordDeleted;
-
-            _dataService.Stop();
-
-            base.DisposeInternal();
-        }
+        public T Row { get; private set; }
     }
 }

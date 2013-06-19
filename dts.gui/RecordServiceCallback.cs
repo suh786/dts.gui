@@ -18,7 +18,7 @@ namespace dts.gui
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class RegistrationServiceCallback : IRegistrationServiceCallback
+    /*public class RegistrationServiceCallback : IRegistrationServiceCallback
     {
         public void RecordAdded(Person person)
         {
@@ -26,5 +26,5 @@ namespace dts.gui
 
             Task.Factory.StartNew(() => Debug.WriteLine(person.ToDisplayString()));
         }
-    }
+    }*/
 }

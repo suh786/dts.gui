@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using dts.gui.Person;
 
 namespace dts.gui.Models
 {
@@ -14,6 +15,36 @@ namespace dts.gui.Models
         event EventHandler<RecordDeleteEventArgs> RecordDeleted;
     }
 
+    public class FakePubSubService : IPubSubService<IPersonRecord>
+    {
+        #region Implementation of IDisposable
+
+        public void Dispose()
+        {
+            
+        }
+
+        #endregion
+
+        #region Implementation of IPubSubService<IPersonRecord>
+
+        public void Start()
+        {
+            
+        }
+
+        public void Stop()
+        {
+            
+        }
+
+        public event EventHandler<RecordAddEventArgs<IPersonRecord>> RecordAdded;
+        public event EventHandler<RecordUpdateEventArgs<IPersonRecord>> RecordUpdated;
+        public event EventHandler<RecordDeleteEventArgs> RecordDeleted;
+
+        #endregion
+    }
+    
     public class RecordAddEventArgs<T> : EventArgs where T : IPubSubRecord
     {
         public RecordAddEventArgs(T record)

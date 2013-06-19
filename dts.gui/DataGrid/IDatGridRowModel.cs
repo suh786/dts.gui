@@ -11,4 +11,23 @@ namespace dts.gui.DataGrid
     {
         
     }
+
+    public abstract class DataGridRowModelBase : NotifyingObject, IDataGridRowModel
+    {
+        protected DataGridRowModelBase(IIdentifiable record)
+        {
+            Id = record.Id;
+        }
+
+        private string _id;
+        public string Id
+        {
+            get { return _id; }
+            private set
+            {
+                _id = value;
+                NotifyPropertyChanged("Id");
+            }
+        }
+    }
 }

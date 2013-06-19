@@ -22,24 +22,28 @@ namespace dts.gui
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static Uri baseAddress = new Uri("http://localhost:3031/RegistrationService");
-        private static RegistrationServiceClient _service;
+       /* private static Uri baseAddress = new Uri("http://localhost:3031/RegistrationService");
+        private static RegistrationServiceClient _service;*/
 
         public MainWindow()
         {
             InitializeComponent();
-            SetupRegistrationServiceClient();
+
+            var model = new MainWindowModel();
+
+            model.Init();
+            this.DataContext = model;
         }
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            Debug.WriteLine(_service.Subscribe("Suhail"));
+           // Debug.WriteLine(_service.Subscribe("Suhail"));
             
         }
 
         private void SetupRegistrationServiceClient()
         {
-            _service = new RegistrationServiceClient(new InstanceContext(null, new RegistrationServiceCallback()));
+            /*_service = new RegistrationServiceClient(new InstanceContext(null, new RegistrationServiceCallback()));
 
             WSDualHttpBinding binding = (WSDualHttpBinding) _service.Endpoint.Binding;
             string uniqueCallbackAddress = baseAddress.AbsoluteUri;
@@ -47,12 +51,12 @@ namespace dts.gui
             // make it unique - append a GUID
             uniqueCallbackAddress += Guid.NewGuid().ToString();
             //uniqueCallbackAddress += 9;
-            binding.ClientBaseAddress = new Uri(uniqueCallbackAddress);
+            binding.ClientBaseAddress = new Uri(uniqueCallbackAddress);*/
         }
 
         private void button2_Click(object sender, RoutedEventArgs e)
         {
-            _service.Unsubscribe("Suhail");
+            //_service.Unsubscribe("Suhail");
         }
     }
 }
