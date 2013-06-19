@@ -37,6 +37,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.Data" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
@@ -71,6 +72,7 @@
     <Compile Include="Models\IInitializable.cs" />
     <Compile Include="Models\IPubSubRecord.cs" />
     <Compile Include="Models\IPubSubService.cs" />
+    <Compile Include="Models\SystemManager.cs" />
     <Compile Include="NotifyingObject.cs" />
     <Compile Include="Person\IPerson.cs" />
     <Compile Include="Person\IPersonRowModel.cs" />
@@ -83,6 +85,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Services\DtsService.cs" />
+    <Compile Include="Services\IPubSubServiceCallback.cs" />
+    <Compile Include="Services\ISubscriptionManager.cs" />
+    <Compile Include="Services\PersonSubscriptionManager.cs" />
     <Compile Include="View\DataGrid.xaml.cs">
       <DependentUpon>DataGrid.xaml</DependentUpon>
     </Compile>

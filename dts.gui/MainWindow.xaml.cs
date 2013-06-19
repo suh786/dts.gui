@@ -44,7 +44,7 @@ namespace dts.gui
         private void SetupRegistrationServiceClient()
         {
             /*_service = new RegistrationServiceClient(new InstanceContext(null, new RegistrationServiceCallback()));
-
+            
             WSDualHttpBinding binding = (WSDualHttpBinding) _service.Endpoint.Binding;
             string uniqueCallbackAddress = baseAddress.AbsoluteUri;
 
