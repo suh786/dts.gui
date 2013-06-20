@@ -1,27 +1,27 @@
 using System;
+using System.ComponentModel.Composition;
 using System.ServiceModel;
 using dts.gui.DtsServiceClients;
 using dts.gui.Models;
-using dts.gui.RegistrationService;
 
 namespace dts.gui.Services
 {
     public abstract class SubscriptionManagerBase<TRecord, TCallBack> : DisposeableObject, ISubscriptionManager<TRecord> where TRecord : IPubSubRecord where TCallBack : IPubSubServiceCallback<TRecord>
     {
-        private readonly string _id;
-        private static readonly Uri _baseAddress = new Uri("http://localhost:3031/RegistrationService");
         private IPubSubServiceClient _dtsServiceClient;
         private TCallBack _callback;
-        private readonly IPubSubServiceClientFactory _clientFactory;
 
-        protected SubscriptionManagerBase(string id)
+        [Import]
+        private IPubSubServiceClientFactory _clientFactory;
+
+        protected SubscriptionManagerBase()
         {
-            _id = id;
+            SystemManager.InjectServices(this);
         }
 
         public bool Subscribe()
         {
-            _callback = CreateCallBack();
+            _callback = GetCallBack();
             _dtsServiceClient = GetServiceClient(_clientFactory, _callback);
 
             AttachCallBackEventHandler();
@@ -63,13 +63,8 @@ namespace dts.gui.Services
         }
         #endregion
 
-        private TCallBack CreateCallBack()
-        {
-            var callback = (TCallBack)Activator.CreateInstance(typeof (TCallBack));
-
-            return callback;
-        }
-
+        protected abstract TCallBack GetCallBack();
+        
         protected abstract IPubSubServiceClient GetServiceClient(IPubSubServiceClientFactory clientFactory, TCallBack callback);
         
         #region Callback Handling
@@ -103,21 +98,12 @@ namespace dts.gui.Services
         }
 
         #endregion
-
-        private RegistrationServiceClient InitializeService(TCallBack callBack)
-        {
-            var dtsServiceClient = new RegistrationServiceClient(new InstanceContext(null, callBack));
-            /*var uniqueCallbackAddress = _baseAddress.AbsoluteUri;
-            // make it unique - append a GUID
-            uniqueCallbackAddress += _id;
-            ((WSDualHttpBinding)_dtsServiceClient.Endpoint.Binding).ClientBaseAddress = new Uri(uniqueCallbackAddress);
-*/
-            return dtsServiceClient;
-        }
-
+        
         protected override void DisposeInternal()
         {
             DettachCallBackEventHandler();
+
+            _dtsServiceClient.Dispose();
 
             base.DisposeInternal();
         }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="RegistrationService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IRegistrationService_policy">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="PersonSubscriptionService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IPersonSubscriptionService_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
@@ -107,7 +107,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IRegistrationService_Subscribe_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IPersonSubscriptionService_Subscribe_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -130,7 +130,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IRegistrationService_Subscribe_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IPersonSubscriptionService_Subscribe_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -153,7 +153,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IRegistrationService_Unsubscribe_Input_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IPersonSubscriptionService_Unsubscribe_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -176,7 +176,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IRegistrationService_Unsubscribe_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IPersonSubscriptionService_Unsubscribe_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -199,7 +199,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSDualHttpBinding_IRegistrationService_RecordAdded_output_policy">
+  <wsp:Policy wsu:Id="WSDualHttpBinding_IPersonSubscriptionService_RecordAdded_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -224,79 +224,79 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:3030/RegistrationService?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:3030/RegistrationService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:3030/RegistrationService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/dts.server.Commons" />
+      <xsd:import schemaLocation="http://localhost:3030/PersonSubscriptionService?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:3030/PersonSubscriptionService?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:3030/PersonSubscriptionService?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/dts.server.Commons" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IRegistrationService_Subscribe_InputMessage">
+  <wsdl:message name="IPersonSubscriptionService_Subscribe_InputMessage">
     <wsdl:part name="parameters" element="tns:Subscribe" />
   </wsdl:message>
-  <wsdl:message name="IRegistrationService_Subscribe_OutputMessage">
+  <wsdl:message name="IPersonSubscriptionService_Subscribe_OutputMessage">
     <wsdl:part name="parameters" element="tns:SubscribeResponse" />
   </wsdl:message>
-  <wsdl:message name="IRegistrationService_Unsubscribe_InputMessage">
+  <wsdl:message name="IPersonSubscriptionService_Unsubscribe_InputMessage">
     <wsdl:part name="parameters" element="tns:Unsubscribe" />
   </wsdl:message>
-  <wsdl:message name="IRegistrationService_Unsubscribe_OutputMessage">
+  <wsdl:message name="IPersonSubscriptionService_Unsubscribe_OutputMessage">
     <wsdl:part name="parameters" element="tns:UnsubscribeResponse" />
   </wsdl:message>
-  <wsdl:message name="IRegistrationService_RecordAdded_OutputCallbackMessage">
+  <wsdl:message name="IPersonSubscriptionService_RecordAdded_OutputCallbackMessage">
     <wsdl:part name="parameters" element="tns:RecordAdded" />
   </wsdl:message>
-  <wsdl:portType name="IRegistrationService">
+  <wsdl:portType name="IPersonSubscriptionService">
     <wsdl:operation name="Subscribe">
-      <wsdl:input wsam:Action="http://tempuri.org/IRegistrationService/Subscribe" message="tns:IRegistrationService_Subscribe_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IRegistrationService/SubscribeResponse" message="tns:IRegistrationService_Subscribe_OutputMessage" />
+      <wsdl:input wsam:Action="http://tempuri.org/IPersonSubscriptionService/Subscribe" message="tns:IPersonSubscriptionService_Subscribe_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IPersonSubscriptionService/SubscribeResponse" message="tns:IPersonSubscriptionService_Subscribe_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="Unsubscribe">
-      <wsdl:input wsam:Action="http://tempuri.org/IRegistrationService/Unsubscribe" message="tns:IRegistrationService_Unsubscribe_InputMessage" />
-      <wsdl:output wsam:Action="http://tempuri.org/IRegistrationService/UnsubscribeResponse" message="tns:IRegistrationService_Unsubscribe_OutputMessage" />
+      <wsdl:input wsam:Action="http://tempuri.org/IPersonSubscriptionService/Unsubscribe" message="tns:IPersonSubscriptionService_Unsubscribe_InputMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IPersonSubscriptionService/UnsubscribeResponse" message="tns:IPersonSubscriptionService_Unsubscribe_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RecordAdded">
-      <wsdl:output wsam:Action="http://tempuri.org/IRegistrationService/RecordAdded" message="tns:IRegistrationService_RecordAdded_OutputCallbackMessage" />
+      <wsdl:output wsam:Action="http://tempuri.org/IPersonSubscriptionService/RecordAdded" message="tns:IPersonSubscriptionService_RecordAdded_OutputCallbackMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="WSDualHttpBinding_IRegistrationService" type="tns:IRegistrationService">
-    <wsp:PolicyReference URI="#WSDualHttpBinding_IRegistrationService_policy" />
+  <wsdl:binding name="WSDualHttpBinding_IPersonSubscriptionService" type="tns:IPersonSubscriptionService">
+    <wsp:PolicyReference URI="#WSDualHttpBinding_IPersonSubscriptionService_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="Subscribe">
-      <soap12:operation soapAction="http://tempuri.org/IRegistrationService/Subscribe" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IPersonSubscriptionService/Subscribe" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IRegistrationService_Subscribe_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IPersonSubscriptionService_Subscribe_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IRegistrationService_Subscribe_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IPersonSubscriptionService_Subscribe_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="Unsubscribe">
-      <soap12:operation soapAction="http://tempuri.org/IRegistrationService/Unsubscribe" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IPersonSubscriptionService/Unsubscribe" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IRegistrationService_Unsubscribe_Input_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IPersonSubscriptionService_Unsubscribe_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IRegistrationService_Unsubscribe_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IPersonSubscriptionService_Unsubscribe_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
     <wsdl:operation name="RecordAdded">
-      <soap12:operation soapAction="http://tempuri.org/IRegistrationService/RecordAdded" style="document" />
+      <soap12:operation soapAction="http://tempuri.org/IPersonSubscriptionService/RecordAdded" style="document" />
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSDualHttpBinding_IRegistrationService_RecordAdded_output_policy" />
+        <wsp:PolicyReference URI="#WSDualHttpBinding_IPersonSubscriptionService_RecordAdded_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
-  <wsdl:service name="RegistrationService">
-    <wsdl:port name="WSDualHttpBinding_IRegistrationService" binding="tns:WSDualHttpBinding_IRegistrationService">
-      <soap12:address location="http://localhost:3030/RegistrationService" />
+  <wsdl:service name="PersonSubscriptionService">
+    <wsdl:port name="WSDualHttpBinding_IPersonSubscriptionService" binding="tns:WSDualHttpBinding_IPersonSubscriptionService">
+      <soap12:address location="http://localhost:3030/PersonSubscriptionService" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://localhost:3030/RegistrationService</wsa10:Address>
+        <wsa10:Address>http://localhost:3030/PersonSubscriptionService</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
-          <Upn>Rocking\Suhail Siddiqi</Upn>
+          <Upn>S.Siddiqi@iontrading.com</Upn>
         </Identity>
       </wsa10:EndpointReference>
     </wsdl:port>

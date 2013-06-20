@@ -13,121 +13,29 @@ namespace dts.gui.Person
             
         }
 
-        public PersonRecord(RegistrationService.Person person)
+        public PersonRecord(PersonSubscriptionService.Person person)
         {
-            
-        }
-        public string Id
-        {
-            get { throw new System.NotImplementedException(); }
-        }
-
-        public string FirstName
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
+            Id = person.Id;
+            FirstName = person.FirstName;
+            MiddleName = person.MiddleName;
+            LastName = person.LastName;
+            Address = person.Address;
+            Age = person.Age;
+            FatherName = person.FatherName;
+            MotherName = person.MotherName;
+            OfficeName = person.OfficeName;
+            OfficeAddress = person.OfficeAddress;
         }
 
-        public string LastName
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
-        public string MiddleName
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
-        public string Address
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
-        public int Age
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
-        public string FatherName
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
-        public string MotherName
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
-        public string OfficeName
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
-        }
-
-        public string OfficeAddress
-        {
-            get
-            {
-                throw new System.NotImplementedException();
-            }
-            set
-            {
-                throw new System.NotImplementedException();
-            }
-        }
+        public string Id { get; private set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string MiddleName { get; set; }
+        public string Address { get; set; }
+        public int Age { get; set; }
+        public string FatherName { get; set; }
+        public string MotherName { get; set; }
+        public string OfficeName { get; set; }
+        public string OfficeAddress { get; set; }
     }
 }

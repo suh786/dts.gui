@@ -6,7 +6,7 @@
 
 using System.Diagnostics;
 using System.Threading.Tasks;
-using dts.gui.RegistrationService;
+using dts.gui.PersonSubscriptionService;
 
 namespace dts.gui
 {
@@ -18,13 +18,12 @@ namespace dts.gui
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    /*public class RegistrationServiceCallback : IRegistrationServiceCallback
+    public class RegistrationServiceCallback : IPersonSubscriptionServiceCallback
     {
-        public void RecordAdded(Person person)
-        {
-            if(person == null) return;
 
-            Task.Factory.StartNew(() => Debug.WriteLine(person.ToDisplayString()));
+        public void RecordAdded(PersonSubscriptionService.Person record)
+        {
+            Debug.WriteLine(record.ToDisplayString());
         }
-    }*/
+    }
 }

@@ -73,7 +73,6 @@
     <Compile Include="Models\IIdentifiable.cs" />
     <Compile Include="Models\IInitializable.cs" />
     <Compile Include="Models\IPubSubRecord.cs" />
-    <Compile Include="Models\IPubSubService.cs" />
     <Compile Include="Models\SystemManager.cs" />
     <Compile Include="NotifyingObject.cs" />
     <Compile Include="Person\IPerson.cs" />
@@ -83,7 +82,7 @@
     <Compile Include="Person\PersonRecord.cs" />
     <Compile Include="Person\PersonServiceCallBack.cs" />
     <Compile Include="RecordServiceCallback.cs" />
-    <Compile Include="Service References\RegistrationService\Reference.cs">
+    <Compile Include="Service References\PersonSubscriptionService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -139,14 +138,14 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\RegistrationService\RegistrationService.wsdl" />
-    <None Include="Service References\RegistrationService\RegistrationService.xsd">
+    <None Include="Service References\PersonSubscriptionService\PersonSubscriptionService.wsdl" />
+    <None Include="Service References\PersonSubscriptionService\PersonSubscriptionService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RegistrationService\RegistrationService1.xsd">
+    <None Include="Service References\PersonSubscriptionService\PersonSubscriptionService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\RegistrationService\RegistrationService2.xsd">
+    <None Include="Service References\PersonSubscriptionService\PersonSubscriptionService2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -154,24 +153,23 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\RegistrationService\" />
+    <WCFMetadataStorage Include="Service References\PersonSubscriptionService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RegistrationService\RegistrationService.disco" />
+    <None Include="Service References\PersonSubscriptionService\PersonSubscriptionService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RegistrationService\configuration91.svcinfo" />
+    <None Include="Service References\PersonSubscriptionService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RegistrationService\configuration.svcinfo" />
+    <None Include="Service References\PersonSubscriptionService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\RegistrationService\Reference.svcmap">
+    <None Include="Service References\PersonSubscriptionService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

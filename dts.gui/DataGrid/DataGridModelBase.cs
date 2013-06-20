@@ -1,41 +1,65 @@
 using System;
+using System.ComponentModel.Composition;
 using dts.gui.Models;
+using dts.gui.Services;
 
 namespace dts.gui.DataGrid
 {
     public abstract class DataGridModelBase<TRowModel, TPubSubRecord> : DisposeableObject, IDataGridModel<TRowModel> where TPubSubRecord : IPubSubRecord where TRowModel : IDataGridRowModel
     {
-        private readonly IPubSubService<TPubSubRecord> _dataService;
+        private ISubscriptionManager<TPubSubRecord> _subscriptionManager;
 
-        protected DataGridModelBase(IPubSubService<TPubSubRecord> dataService)
+        protected DataGridModelBase()
         {
-            _dataService = dataService;
-            _dataService.RecordAdded += HandleRecordAdded;
-            _dataService.RecordUpdated += HandleRecordUpdated;
-            _dataService.RecordDeleted += HandleRecordDeleted;
+            SystemManager.InjectServices(this);
         }
 
-        private void HandleRecordDeleted(object sender, RecordDeleteEventArgs e)
+        [Import]
+        private IDtsService _dtsService;
+        
+        private void HandleRecordDeleted(object sender, RecordDeletedEventArgs e)
         {
             RaiseRowDeleted(new DataGridRowDeleteEventArgs(e.RecordId));
         }
 
-        private void HandleRecordUpdated(object sender, RecordUpdateEventArgs<TPubSubRecord> e)
+        private void HandleRecordUpdated(object sender, RecordUpdatedEventArgs<TPubSubRecord> e)
         {
             RaiseRowUpdated(new DataGridRowUpdateEventArgs<TRowModel>(CreateRow(e.Record)));
         }
 
         protected abstract TRowModel CreateRow(TPubSubRecord record);
 
-        private void HandleRecordAdded(object sender, RecordAddEventArgs<TPubSubRecord> e)
+        private void HandleRecordAdded(object sender, RecordAddedEventArgs<TPubSubRecord> e)
         {
             RaiseRowAdded(new DataGridRowAddedEventArgs<TRowModel>(CreateRow(e.Record)));
         }
         
         public void Init()
         {
-            _dataService.Start(); 
+            _subscriptionManager = GetSubscriptionManager(_dtsService);
+            AttachSubscriptionManagerHandlers();
+
+            _subscriptionManager.Subscribe();
         }
+
+        private void AttachSubscriptionManagerHandlers()
+        {
+            _subscriptionManager.RecordAdded += HandleRecordAdded;
+            _subscriptionManager.RecordUpdated += HandleRecordUpdated;
+            _subscriptionManager.RecordDeleted += HandleRecordDeleted;
+        }
+
+        private void DettachSubscriptionManagerHandlers()
+        {
+            if (_subscriptionManager != null)
+            {
+                _subscriptionManager.RecordAdded -= HandleRecordAdded;
+                _subscriptionManager.RecordUpdated -= HandleRecordUpdated;
+                _subscriptionManager.RecordDeleted -= HandleRecordDeleted;
+            }
+        }
+
+        protected abstract ISubscriptionManager<TPubSubRecord> GetSubscriptionManager(IDtsService dtsService);
 
         public event EventHandler<DataGridRowAddedEventArgs<TRowModel>> RowAdded;
         public void RaiseRowAdded(DataGridRowAddedEventArgs<TRowModel> e)
@@ -67,12 +91,10 @@ namespace dts.gui.DataGrid
 
         protected override void DisposeInternal()
         {
-            _dataService.RecordAdded -= HandleRecordAdded;
-            _dataService.RecordUpdated -= HandleRecordUpdated;
-            _dataService.RecordDeleted -= HandleRecordDeleted;
+            _subscriptionManager.Unsubscribe();
 
-            _dataService.Stop();
-
+            DettachSubscriptionManagerHandlers();
+            
             base.DisposeInternal();
         }
 

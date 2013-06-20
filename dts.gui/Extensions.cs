@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using dts.gui.RegistrationService;
+using dts.gui.PersonSubscriptionService;
 
 namespace dts.gui
 {
     public static class Extensions
     {
-        /*public static string ToDisplayString(this Person person)
+        public static string ToDisplayString(this PersonSubscriptionService.Person person)
         {
             return string.Format("{1}{0}{2}{0}{3}{0}{4}{0}{5}{0}{6}{0}{7}{0}{8}{0}{9}{0}{10}",
                                  ",",
@@ -22,6 +22,6 @@ namespace dts.gui
                                  person.MotherName,
                                  person.OfficeName,
                                  person.OfficeAddress);
-        }*/
+        }
     }
 }
