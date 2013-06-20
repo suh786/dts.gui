@@ -30,14 +30,14 @@ namespace dts.gui
         {
             InitializeComponent();
 
-            /*this.Loaded += OnLoaded;
+            this.Loaded += OnLoaded;
             _model = new MainWindowModel();
 
             this.DataContext = _model;
 
-            _model.Init();*/
+            _model.Init();
 
-            SetupRegistrationServiceClient();
+            //SetupRegistrationServiceClient();
 
             //dtsPersonServiceClient.Subscribe();
 

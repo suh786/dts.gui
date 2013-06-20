@@ -15,7 +15,7 @@ namespace dts.gui.Person
         {
             return new IDataGridColumnDescriptor[]
                        {
-                           new DataGridDisplayOnlyColumnDescriptor("Id", "Id", "Id", 20), 
+                           new DataGridDisplayOnlyColumnDescriptor("Id", "Id", "Id", 40), 
                            new DataGridDisplayOnlyColumnDescriptor("FirstName", "FirstName", "First Name", 100), 
                            new DataGridDisplayOnlyColumnDescriptor("MiddleName", "MiddleName", "Middle Name", 100),
                            new DataGridDisplayOnlyColumnDescriptor("LastName", "LastName", "Last Name", 100), 

@@ -31,7 +31,7 @@ namespace dts.gui.View
         {
             base.Init();
             
-           // GenerateColumns();
+            GenerateColumns();
         }
 
         private void GenerateColumns()

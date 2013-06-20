@@ -3,8 +3,8 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:dts.gui.View"
         Title="MainWindow">
     <Grid>
-        <!--<View:DataGrid DataContext="{Binding PersonDataGridViewModel}"/>-->
+        <View:DataGrid DataContext="{Binding PersonDataGridViewModel}"/>
         
-        <Button Click="button1_Click" Width="120" Height="21"/>
+        <!--<Button Click="button1_Click" Width="120" Height="21"/>-->
     </Grid>
 </Window>
