@@ -6,7 +6,8 @@ using dts.gui.Models;
 
 namespace dts.gui.Services
 {
-    public interface IPubSubServiceCallback<T> where T : IPubSubRecord
+    
+    public interface IPubSubServiceCallback<T>  where T : IPubSubRecord
     {
         event EventHandler<PubSubServiceRecordAddedEventArgs<T>> RecordAdded;
         event EventHandler<PubSubServiceRecordUpdatedEventArgs<T>> RecordUpdated;
