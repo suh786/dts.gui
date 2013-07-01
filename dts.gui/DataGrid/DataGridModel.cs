@@ -1,6 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
-using dts.gui.Models;
+using dts.gui.Commons;
 using dts.gui.DataGrid;
 
 namespace dts.gui.DataGrid
@@ -8,38 +9,38 @@ namespace dts.gui.DataGrid
     public interface IDataGridModel<TRowModel> : IDisposable, IInitializable
         where TRowModel : IDataGridRowModel
     {
-        event EventHandler<DataGridRowAddedEventArgs<TRowModel>> RowAdded;
-        event EventHandler<DataGridRowUpdateEventArgs<TRowModel>> RowUpdated;
-        event EventHandler<DataGridRowDeleteEventArgs> RowDeleted;
+        event EventHandler<DataGridRowsAddedEventArgs<TRowModel>> RowsAdded;
+        event EventHandler<DataGridRowsUpdateEventArgs<TRowModel>> RowsUpdated;
+        event EventHandler<DataGridRowsDeleteEventArgs> RowsDeleted;
     }
 
-    public class DataGridRowDeleteEventArgs : EventArgs
+    public class DataGridRowsDeleteEventArgs : EventArgs
     {
-        public DataGridRowDeleteEventArgs(string rowId)
+        public DataGridRowsDeleteEventArgs(IEnumerable<string> rowIds)
         {
-            RowId = rowId;
+            RowIds = rowIds;
         }
 
-        public string RowId { get; private set; }
+        public IEnumerable<string> RowIds { get; private set; }
     }
 
-    public class DataGridRowUpdateEventArgs<T> : EventArgs
+    public class DataGridRowsUpdateEventArgs<T> : EventArgs
     {
-        public DataGridRowUpdateEventArgs(T row)
+        public DataGridRowsUpdateEventArgs(IEnumerable<T> rows)
         {
-            Row = row;
+            Rows = rows;
         }
 
-        public T Row { get; private set; }
+        public IEnumerable<T> Rows { get; private set; }
     }
 
-    public class DataGridRowAddedEventArgs<T> : EventArgs where T : IDataGridRowModel
+    public class DataGridRowsAddedEventArgs<T> : EventArgs where T : IDataGridRowModel
     {
-        public DataGridRowAddedEventArgs(T row)
+        public DataGridRowsAddedEventArgs(IEnumerable<T> rows)
         {
-            Row = row;
+            Rows = rows;
         }
 
-        public T Row { get; private set; }
+        public IEnumerable<T> Rows { get; private set; }
     }
 }

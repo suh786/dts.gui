@@ -18,12 +18,12 @@ namespace dts.gui
     /// <summary>
     /// TODO: Update summary.
     /// </summary>
-    public class RegistrationServiceCallback : IPersonSubscriptionServiceCallback
+   /* public class RegistrationServiceCallback : IPersonSubscriptionServiceCallback
     {
 
         public void RecordAdded(PersonSubscriptionService.Person record)
         {
             Debug.WriteLine(record.ToDisplayString());
         }
-    }
+    }*/
 }

@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 
-namespace dts.gui.Models
+namespace dts.gui.Commons
 {
     public static class SystemManager
     {

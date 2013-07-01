@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using dts.gui.DtsServiceClients;
-using dts.gui.Models;
 using dts.gui.Person;
 
 namespace dts.gui.Services

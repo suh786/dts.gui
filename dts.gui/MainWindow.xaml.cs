@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using dts.gui.PersonSubscriptionService;
+using dts.gui.View;
 
 namespace dts.gui
 {
@@ -30,46 +31,18 @@ namespace dts.gui
         {
             InitializeComponent();
 
-            this.Loaded += OnLoaded;
             _model = new MainWindowModel();
 
             this.DataContext = _model;
 
             _model.Init();
 
-            //SetupRegistrationServiceClient();
-
-            //dtsPersonServiceClient.Subscribe();
-
         }
 
-        private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
+        private void HandleShowRelatives(object sender, RoutedEventArgs e)
         {
-           
-        }
-
-
-        private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            Debug.WriteLine(dtsPersonServiceClient.Subscribe());
-            
-        }
-        private static readonly Uri _baseAddress = new Uri("http://localhost:3031/PersonSubscriptionService");
-        private PersonSubscriptionServiceClient dtsPersonServiceClient;
-
-        private void SetupRegistrationServiceClient()
-        {
-            dtsPersonServiceClient = new PersonSubscriptionServiceClient(new InstanceContext(null, new RegistrationServiceCallback()));
-            var uniqueCallbackAddress = _baseAddress.AbsoluteUri;
-            // make it unique - append a GUID
-            uniqueCallbackAddress += Guid.NewGuid().ToString();
-            ((WSDualHttpBinding)dtsPersonServiceClient.Endpoint.Binding).ClientBaseAddress = new Uri(uniqueCallbackAddress);
-
-        }
-
-        private void button2_Click(object sender, RoutedEventArgs e)
-        {
-            //_service.Unsubscribe("Suhail");
+            var relativesDialog = new RelativesDialogView();
+            relativesDialog.ShowDialog();
         }
     }
 }

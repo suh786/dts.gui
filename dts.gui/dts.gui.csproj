@@ -58,6 +58,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commons\AsyncObservableCollection.cs" />
     <Compile Include="DataGrid\DataGridDisplayOnlyColumnDescriptor.cs" />
     <Compile Include="DataGrid\DataGridModel.cs" />
     <Compile Include="DataGrid\DataGridModelBase.cs" />
@@ -69,12 +70,12 @@
     <Compile Include="DtsServiceClients\IPubSubServiceClient.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="MainWindowModel.cs" />
-    <Compile Include="Models\DisposeableObject.cs" />
-    <Compile Include="Models\IIdentifiable.cs" />
-    <Compile Include="Models\IInitializable.cs" />
-    <Compile Include="Models\IPubSubRecord.cs" />
-    <Compile Include="Models\SystemManager.cs" />
-    <Compile Include="NotifyingObject.cs" />
+    <Compile Include="Commons\DisposeableObject.cs" />
+    <Compile Include="Commons\IIdentifiable.cs" />
+    <Compile Include="Commons\IInitializable.cs" />
+    <Compile Include="Commons\IPubSubRecord.cs" />
+    <Compile Include="Commons\SystemManager.cs" />
+    <Compile Include="Commons\NotifyingObject.cs" />
     <Compile Include="Person\IPerson.cs" />
     <Compile Include="Person\IPersonRowModel.cs" />
     <Compile Include="Person\PersonDataGridModel.cs" />
@@ -97,6 +98,9 @@
       <DependentUpon>DataGrid.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\IView.cs" />
+    <Compile Include="View\RelativesDialogView.xaml.cs">
+      <DependentUpon>RelativesDialogView.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -110,6 +114,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\DataGrid.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RelativesDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using dts.gui.Models;
+﻿using System.ComponentModel;
 
-namespace dts.gui
+namespace dts.gui.Commons
 {
     public class NotifyingObject : DisposeableObject, INotifyPropertyChanged
     {

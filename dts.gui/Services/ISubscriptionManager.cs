@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using dts.gui.Models;
+using dts.gui.Commons;
 
 namespace dts.gui.Services
 {
@@ -11,36 +11,36 @@ namespace dts.gui.Services
         bool Subscribe();
         bool Unsubscribe();
 
-        event EventHandler<RecordAddedEventArgs<T>> RecordAdded;
-        event EventHandler<RecordUpdatedEventArgs<T>> RecordUpdated;
-        event EventHandler<RecordDeletedEventArgs> RecordDeleted;
+        event EventHandler<RecordAddedEventArgs<T>> RecordsAdded;
+        event EventHandler<RecordUpdatedEventArgs<T>> RecordsUpdated;
+        event EventHandler<RecordDeletedEventArgs> RecordsDeleted;
     }
 
     public class RecordDeletedEventArgs : EventArgs
     {
-        public RecordDeletedEventArgs(string id)
+        public RecordDeletedEventArgs(IEnumerable<string> ids)
         {
-            RecordId = id;
+            RecordIds = ids;
         }
 
-        public string RecordId { get; private set; }
+        public IEnumerable<string> RecordIds { get; private set; }
     }
 
     public class RecordUpdatedEventArgs<T> : EventArgs where T : IPubSubRecord
     {
-        public RecordUpdatedEventArgs(T record)
+        public RecordUpdatedEventArgs(IEnumerable<T> records)
         {
-            Record = record;
+            Records = records;
         }
-        public T Record { get; private set; }
+        public IEnumerable<T> Records { get; private set; }
     }
 
     public class RecordAddedEventArgs<T> : EventArgs where T : IPubSubRecord
     {
-        public RecordAddedEventArgs(T record)
+        public RecordAddedEventArgs(IEnumerable<T> records)
         {
-            Record = record;
+            Records = records;
         }
-        public T Record { get; private set; }
+        public IEnumerable<T> Records { get; private set; }
     }
 }

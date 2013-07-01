@@ -2,9 +2,15 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:View="clr-namespace:dts.gui.View"
         Title="MainWindow">
-    <Grid>
-        <View:DataGrid DataContext="{Binding PersonDataGridViewModel}"/>
+    <DockPanel>
+    
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top">
+            <Button Content="Show Relatives" Click="HandleShowRelatives" Margin="5"/>
+        </StackPanel>
         
-        <!--<Button Click="button1_Click" Width="120" Height="21"/>-->
-    </Grid>
+        <Grid DockPanel.Dock="Bottom">
+            <View:DataGrid DataContext="{Binding PersonDataGridViewModel}"/>
+        </Grid>
+
+    </DockPanel>
 </Window>

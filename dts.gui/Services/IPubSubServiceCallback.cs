@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using dts.gui.Models;
+using dts.gui.Commons;
 
 namespace dts.gui.Services
 {
@@ -16,29 +16,29 @@ namespace dts.gui.Services
 
     public class PubSubServiceRecordDeletedEventArgs : EventArgs
     {
-        public PubSubServiceRecordDeletedEventArgs(string id)
+        public PubSubServiceRecordDeletedEventArgs(IEnumerable<string> ids)
         {
-            RecordId = id;
+            RecordIds = ids;
         }
 
-        public string RecordId { get; private set; }
+        public IEnumerable<string> RecordIds { get; private set; }
     }
 
     public class PubSubServiceRecordUpdatedEventArgs<T> : EventArgs where T : IPubSubRecord
     {
-        public PubSubServiceRecordUpdatedEventArgs(T record)
+        public PubSubServiceRecordUpdatedEventArgs(IEnumerable<T> records)
         {
-            Record = record;
+            Records = records;
         }
-        public T Record { get; private set; }
+        public IEnumerable<T> Records { get; private set; }
     }
 
     public class PubSubServiceRecordAddedEventArgs<T> : EventArgs where T: IPubSubRecord
     {
-        public PubSubServiceRecordAddedEventArgs(T record)
+        public PubSubServiceRecordAddedEventArgs(IEnumerable<T> records)
         {
-            Record = record;
+            Records = records;
         }
-        public T Record { get; private set; }
+        public IEnumerable<T> Records { get; private set; }
     }
 }

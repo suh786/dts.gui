@@ -1,7 +1,8 @@
 ﻿using System;
 using System.ServiceModel;
+using System.Threading.Tasks;
+using dts.gui.Commons;
 using dts.gui.DtsServiceClients;
-using dts.gui.Models;
 using dts.gui.Person;
 using dts.gui.PersonSubscriptionService;
 
@@ -23,8 +24,9 @@ namespace dts.gui.Services
 
         public bool Subscribe()
         {
-            return _dtsPersonServiceClient.Subscribe();
-            //return true;
+            //return _dtsPersonServiceClient.Subscribe();
+            Task.Factory.StartNew(() => _dtsPersonServiceClient.Subscribe());
+            return true;
         }
 
         public bool UnSubscribe()

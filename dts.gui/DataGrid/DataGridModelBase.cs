@@ -1,7 +1,8 @@
 using System;
 using System.ComponentModel.Composition;
-using dts.gui.Models;
+using dts.gui.Commons;
 using dts.gui.Services;
+using System.Linq;
 
 namespace dts.gui.DataGrid
 {
@@ -17,21 +18,21 @@ namespace dts.gui.DataGrid
         [Import]
         private IDtsService _dtsService;
         
-        private void HandleRecordDeleted(object sender, RecordDeletedEventArgs e)
+        private void HandleRecordsDeleted(object sender, RecordDeletedEventArgs e)
         {
-            RaiseRowDeleted(new DataGridRowDeleteEventArgs(e.RecordId));
+            RaiseRowDeleted(new DataGridRowsDeleteEventArgs(e.RecordIds));
         }
 
-        private void HandleRecordUpdated(object sender, RecordUpdatedEventArgs<TPubSubRecord> e)
+        private void HandleRecordsUpdated(object sender, RecordUpdatedEventArgs<TPubSubRecord> e)
         {
-            RaiseRowUpdated(new DataGridRowUpdateEventArgs<TRowModel>(CreateRow(e.Record)));
+            RaiseRowUpdated(new DataGridRowsUpdateEventArgs<TRowModel>(e.Records.Select(x => CreateRow(x))));
         }
 
         protected abstract TRowModel CreateRow(TPubSubRecord record);
 
-        private void HandleRecordAdded(object sender, RecordAddedEventArgs<TPubSubRecord> e)
+        private void HandleRecordsAdded(object sender, RecordAddedEventArgs<TPubSubRecord> e)
         {
-            RaiseRowAdded(new DataGridRowAddedEventArgs<TRowModel>(CreateRow(e.Record)));
+            RaiseRowAdded(new DataGridRowsAddedEventArgs<TRowModel>(e.Records.Select(x => CreateRow(x))));
         }
         
         public void Init()
@@ -44,48 +45,48 @@ namespace dts.gui.DataGrid
 
         private void AttachSubscriptionManagerHandlers()
         {
-            _subscriptionManager.RecordAdded += HandleRecordAdded;
-            _subscriptionManager.RecordUpdated += HandleRecordUpdated;
-            _subscriptionManager.RecordDeleted += HandleRecordDeleted;
+            _subscriptionManager.RecordsAdded += HandleRecordsAdded;
+            _subscriptionManager.RecordsUpdated += HandleRecordsUpdated;
+            _subscriptionManager.RecordsDeleted += HandleRecordsDeleted;
         }
 
         private void DettachSubscriptionManagerHandlers()
         {
             if (_subscriptionManager != null)
             {
-                _subscriptionManager.RecordAdded -= HandleRecordAdded;
-                _subscriptionManager.RecordUpdated -= HandleRecordUpdated;
-                _subscriptionManager.RecordDeleted -= HandleRecordDeleted;
+                _subscriptionManager.RecordsAdded -= HandleRecordsAdded;
+                _subscriptionManager.RecordsUpdated -= HandleRecordsUpdated;
+                _subscriptionManager.RecordsDeleted -= HandleRecordsDeleted;
             }
         }
 
         protected abstract ISubscriptionManager<TPubSubRecord> GetSubscriptionManager(IDtsService dtsService);
 
-        public event EventHandler<DataGridRowAddedEventArgs<TRowModel>> RowAdded;
-        public void RaiseRowAdded(DataGridRowAddedEventArgs<TRowModel> e)
+        public event EventHandler<DataGridRowsAddedEventArgs<TRowModel>> RowsAdded;
+        public void RaiseRowAdded(DataGridRowsAddedEventArgs<TRowModel> e)
         {
-            if (RowAdded != null)
+            if (RowsAdded != null)
             {
-                RowAdded(this, e);
+                RowsAdded(this, e);
             }
         }
 
-        public event EventHandler<DataGridRowUpdateEventArgs<TRowModel>> RowUpdated;
-        public void RaiseRowUpdated(DataGridRowUpdateEventArgs<TRowModel> e)
+        public event EventHandler<DataGridRowsUpdateEventArgs<TRowModel>> RowsUpdated;
+        public void RaiseRowUpdated(DataGridRowsUpdateEventArgs<TRowModel> e)
         {
-            if (RowUpdated != null)
+            if (RowsUpdated != null)
             {
-                RowUpdated(this, e);
+                RowsUpdated(this, e);
             }
         }
 
-        public event EventHandler<DataGridRowDeleteEventArgs> RowDeleted;
+        public event EventHandler<DataGridRowsDeleteEventArgs> RowsDeleted;
 
-        public void RaiseRowDeleted(DataGridRowDeleteEventArgs e)
+        public void RaiseRowDeleted(DataGridRowsDeleteEventArgs e)
         {
-            if (RowDeleted != null)
+            if (RowsDeleted != null)
             {
-                RowDeleted(this, e);
+                RowsDeleted(this, e);
             }
         }
 

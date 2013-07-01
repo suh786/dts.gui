@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using dts.gui.PersonSubscriptionService;
 using dts.gui.Services;
+using System.Linq;
 
 namespace dts.gui.Person
 {
@@ -11,7 +12,7 @@ namespace dts.gui.Person
 
     public class PersonServiceCallBack : IPersonServiceCallBack, IPersonSubscriptionServiceCallback
     {
-        public event System.EventHandler<PubSubServiceRecordAddedEventArgs<IPersonRecord>> RecordAdded;
+        public event EventHandler<PubSubServiceRecordAddedEventArgs<IPersonRecord>> RecordAdded;
         public void RaiseRecordAdded(PubSubServiceRecordAddedEventArgs<IPersonRecord> e)
         {
             if (RecordAdded != null)
@@ -24,11 +25,11 @@ namespace dts.gui.Person
 
         public event EventHandler<PubSubServiceRecordDeletedEventArgs> RecordDeleted;
 
-        void IPersonSubscriptionServiceCallback.RecordAdded(PersonSubscriptionService.Person record)
+        void IPersonSubscriptionServiceCallback.RecordsAdded(PersonSubscriptionService.Person[] records)
         {
             /*var person = record;
             Task.Factory.StartNew(() => RaiseRecordAdded(new PubSubServiceRecordAddedEventArgs<IPersonRecord>(new PersonRecord(person))));*/
-            RaiseRecordAdded(new PubSubServiceRecordAddedEventArgs<IPersonRecord>(new PersonRecord(record)));
+            RaiseRecordAdded(new PubSubServiceRecordAddedEventArgs<IPersonRecord>(records.Select(x => new PersonRecord(x))));
         }
     }
 }

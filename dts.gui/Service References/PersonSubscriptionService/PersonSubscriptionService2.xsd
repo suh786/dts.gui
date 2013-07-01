@@ -25,10 +25,10 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="RecordAdded">
+  <xs:element name="RecordsAdded">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/dts.server.Commons" minOccurs="0" name="record" nillable="true" type="q1:Person" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/dts.server.Commons" minOccurs="0" name="records" nillable="true" type="q1:ArrayOfPerson" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace dts.gui.Models
+namespace dts.gui.Commons
 {
     public class DisposeableObject : IDisposable
     {

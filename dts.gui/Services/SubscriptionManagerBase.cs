@@ -1,8 +1,8 @@
 using System;
 using System.ComponentModel.Composition;
 using System.ServiceModel;
+using dts.gui.Commons;
 using dts.gui.DtsServiceClients;
-using dts.gui.Models;
 
 namespace dts.gui.Services
 {
@@ -35,30 +35,30 @@ namespace dts.gui.Services
         }
 
         #region Update sending
-        public event EventHandler<RecordAddedEventArgs<TRecord>> RecordAdded;
+        public event EventHandler<RecordAddedEventArgs<TRecord>> RecordsAdded;
         public void RaiseRecordAdded(RecordAddedEventArgs<TRecord> e)
         {
-            if (RecordAdded != null)
+            if (RecordsAdded != null)
             {
-                RecordAdded(this, e);
+                RecordsAdded(this, e);
             }
         }
 
-        public event EventHandler<RecordUpdatedEventArgs<TRecord>> RecordUpdated;
+        public event EventHandler<RecordUpdatedEventArgs<TRecord>> RecordsUpdated;
         public void RaiseRecordUpdated(RecordUpdatedEventArgs<TRecord> e)
         {
-            if (RecordUpdated != null)
+            if (RecordsUpdated != null)
             {
-                RecordUpdated(this, e);
+                RecordsUpdated(this, e);
             }
         }
 
-        public event EventHandler<RecordDeletedEventArgs> RecordDeleted;
+        public event EventHandler<RecordDeletedEventArgs> RecordsDeleted;
         public void RaisesRecordDeleted(RecordDeletedEventArgs e)
         {
-            if (RecordDeleted != null)
+            if (RecordsDeleted != null)
             {
-                RecordDeleted(this, e);
+                RecordsDeleted(this, e);
             }
         }
         #endregion
@@ -84,17 +84,17 @@ namespace dts.gui.Services
 
         private void HandleRecordDeleted(object sender, PubSubServiceRecordDeletedEventArgs e)
         {
-            RaisesRecordDeleted(new RecordDeletedEventArgs(e.RecordId));
+            RaisesRecordDeleted(new RecordDeletedEventArgs(e.RecordIds));
         }
 
         private void HandleRecordUpdated(object sender, PubSubServiceRecordUpdatedEventArgs<TRecord> e)
         {
-            RaiseRecordUpdated(new RecordUpdatedEventArgs<TRecord>(e.Record));
+            RaiseRecordUpdated(new RecordUpdatedEventArgs<TRecord>(e.Records));
         }
 
         private void HandleRecordAdded(object sender, PubSubServiceRecordAddedEventArgs<TRecord> e)
         {
-            RaiseRecordAdded(new RecordAddedEventArgs<TRecord>(e.Record));
+            RaiseRecordAdded(new RecordAddedEventArgs<TRecord>(e.Records));
         }
 
         #endregion
